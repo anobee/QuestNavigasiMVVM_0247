@@ -7,6 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.NavHost
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.questnavigasimvvm_0247.view.FormIsian
 import com.example.questnavigasimvvm_0247.view.TampilData
@@ -32,8 +33,16 @@ fun DataApp(
                 )
             }
             composable(route = Navigasi.Detail.name){
-                TampilData {  }
+                TampilData (
+                    onBackBtnClick = {cancelAndBackToFormulirSaya}
+                )
             }
         }
     }
+}
+
+private fun cancelAndBackToFormulirSaya(
+    navController: NavHostController
+){
+    navController.popBackStack(route = Navigasi.FormulisrSaya.name, inclusive = false)
 }
